@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ACE in Action</title>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+</head>
+<style>
+	body {
+		background: #222;
+	}
+	#bike {
+		display: none;
+	}
+	.bar-1,.bar-2,.bar-3, .handlebar, .seat {
+		display: none;
+	}
+</style>
+<script>
+	function getName(obj) { 
+	   var funcNameRegex = /function (.{1,})\(/;
+	   var results = (funcNameRegex).exec((obj).constructor.toString());
+	   return (results && results.length > 1) ? results[1] : "";
+	};
+
+  window.addEventListener('message', function (e) {
+  	var bike = { color: "red" }
+
+    if (e.origin !== (window.location.protocol + "//" + window.location.host))
+      return;
+
+    var mainWindow = e.source;
+    var result = '';
+    try {
+      result = eval(e.data);
+    } catch (e) {
+      result = 'eval() threw an exception.';
+    }
+    mainWindow.postMessage(result, e.origin);
+  	if (getName(bike) !== "Bike") {
+  		alert("Define a protoype named Bike and set a local variable of bike to a new bike object");
+  	} else if (getName(bike) === "Bike") {
+  		$("#bike").show();
+
+  		if (bike.frameColor) {
+  			$(".bar-1,.bar-2,.bar-3").show();
+  			$('.container-animation [class^="bar"]').css("background", bike.color);
+  		}
+
+  		if (bike.seatColor) {
+  			$(".seat").show();
+				$('.seat').css("background", bike.seatColor);
+  		}
+
+  		if (bike.handlebarColor) {
+  			$('.handlebar').show()
+  			$('.handlebar').css("background", bike.handlebarColor);
+  		}
+  		$(".bar-1,.bar-2,.bar-3").css("background", bike.frameColor);
+  		
+  		// $('.seat').css("background", bike.seatColor);
+  		
+  	}
+
+  });	
+</script>
+<body>
+  <div class="container-animation" id="bike">
+    <div class="front">
+      <div class="handlebar"></div>
+      <div class="bar-1"></div>
+      <div class="bar-2"></div>
+      <div class="bar-3"></div>
+      <div class="wheel">
+        <div class="radius-1"></div>
+        <div class="radius-2"></div>
+        <div class="radius-3"></div>
+        <div class="radius-4"></div>
+        <div class="radius-5"></div>
+        <div class="radius-6"></div>
+        <div class="radius-7"></div>
+        <div class="radius-8"></div>
+      </div>
+    </div>
+    <div class="middle">
+      <div class="pedal-1"></div>
+      <div class="pedal-2"></div>
+      <div class="disc"></div>
+    </div>
+    <div class="back">
+      <div class="seat"></div>
+      <div class="bar-1"></div>
+      <div class="bar-2"></div>
+      <div class="bar-3"></div>
+      <div class="wheel">
+        <div class="radius-1"></div>
+        <div class="radius-2"></div>
+        <div class="radius-3"></div>
+        <div class="radius-4"></div>
+        <div class="radius-5"></div>
+        <div class="radius-6"></div>
+        <div class="radius-7"></div>
+        <div class="radius-8"></div>
+      </div>
+    </div>
+  </div>
+</body>
+<style>
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.container-animation {
+  position: relative;
+  font-size: 100px;
+  width: 100px;
+  margin: 80px auto;
+}
+.container-animation .front {
+  position: absolute;
+  top: 0;
+}
+.container-animation .front .handlebar {
+  width: 0.6em;
+  height: 0.15em;
+  background: #333;
+  border-radius: 0 10px 10px 0;
+  position: absolute;
+  top: -0.05em;
+  left: -1.3em;
+  z-index: 2;
+}
+.container-animation .front .bar-1 {
+  -webkit-transform: rotate(115deg);
+  -webkit-transform-origin: 0 0;
+  transform: rotate(115deg);
+  transform-origin: 0 0;
+  left: -0.71em;
+  top: 0.05em;
+}
+.container-animation .front .bar-2 {
+  -webkit-transform: rotate(50deg);
+  -webkit-transform-origin: 0 0;
+  transform: rotate(50deg);
+  transform-origin: 0 0;
+  top: 0.3em;
+  left: -0.85em;
+  width: 1.8em;
+}
+.container-animation .front .bar-3 {
+  top: 0.25em;
+  left: -0.9em;
+  width: 2.2em;
+}
+.container-animation .front .wheel {
+  left: -2.7em;
+}
+.container-animation .middle {
+  position: relative;
+}
+.container-animation .back {
+  position: absolute;
+  left: 1em;
+  top: 0;
+}
+.container-animation .back .seat {
+  width: 0.8em;
+  height: 0.2em;
+  background: #333;
+  z-index: 2;
+  position: absolute;
+  border-radius: 1em;
+  left: -0.2em;
+  top: -0.1em;
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+.container-animation .back .bar-1 {
+  left: 0.3em;
+  top: 0.21em;
+  -webkit-transform: rotate(61deg);
+  -webkit-transform-origin: 0 0;
+  transform: rotate(61deg);
+  transform-origin: 0 0;
+  width: 1.75em;
+}
+.container-animation .back .bar-2 {
+  width: 1.8em;
+  -webkit-transform: rotate(120deg);
+  -webkit-transform-origin: 0 0;
+  transform: rotate(120deg);
+  transform-origin: 0 0;
+  top: 0.1em;
+  left: 0.45em;
+}
+.container-animation .back .bar-3 {
+  left: -0.83em;
+  top: 0.4em;
+  -webkit-transform: translateY(1.33em) skewX(30deg);
+  transform: translateY(1.33em) skewX(30deg);
+}
+.container-animation .back .wheel {
+  left: 0;
+}
+.container-animation .middle .pedal-1 {
+  width: 0.6em;
+  height: 0.08em;
+  background: #444;
+  position: absolute;
+  top: 1.77em;
+  left: -0.25em;
+  -webkit-transform-origin: 100% 50%;
+  transform-origin: 100% 50%;
+  border-radius: 1em;
+  -webkit-animation: rotating 5s linear 0s infinite;
+  animation: rotating 5s linear 0s infinite;
+  z-index: 100;
+}
+.container-animation .middle .pedal-1:after {
+  content: "";
+  width: 0.3em;
+  height: 0.1em;
+  background: #ccc;
+  position: absolute;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  left: -0.12em;
+  border-radius: 1em;
+  -webkit-animation: rotating 5s linear 0s infinite reverse;
+  animation: rotating 5s linear 0s infinite reverse;
+}
+.container-animation .middle .pedal-2 {
+  width: 0.6em;
+  height: 0.08em;
+  background: #444;
+  position: absolute;
+  top: 1.77em;
+  left: 0.35em;
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  z-index: 0;
+  border-radius: 1em;
+  -webkit-animation: rotating 5s linear 0s infinite;
+  animation: rotating 5s linear 0s infinite;
+}
+.container-animation .middle .pedal-2:after {
+  content: "";
+  width: 0.3em;
+  height: 0.1em;
+  background: #ccc;
+  position: absolute;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  right: -0.12em;
+  z-index: 0;
+  border-radius: 1em;
+  -webkit-animation: rotating 5s linear 0s infinite reverse;
+  animation: rotating 5s linear 0s infinite reverse;
+}
+.container-animation .middle .disc {
+  width: 0.7em;
+  height: 0.7em;
+  background: #ddd;
+  border-radius: 1em;
+  position: absolute;
+  top: 1.45em;
+  left: 0em;
+  z-index: 10;
+  box-shadow: 0 0 0 7px #333 inset;
+}
+.container-animation [class^="bar"] {
+  width: 2em;
+  height: 0.12em;
+  background: #D32128;
+  position: absolute;
+  z-index: 1;
+}
+.container-animation .wheel {
+  position: absolute;
+  left: -2.4em;
+  top: 0.7em;
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: 3em;
+  border: 0.05em solid;
+  box-shadow: 0 0 0 0.1em #ccc;
+  overflow: hidden;
+  -webkit-animation: rotating 4s linear 0s infinite;
+  animation: rotating 4s linear 0s infinite;
+}
+.container-animation .wheel [class^="radius"] {
+  background: #888;
+  width: 2em;
+  height: 0.02em;
+  -webkit-transform-origin: 100% 50%;
+  transform-origin: 100% 50%;
+  position: absolute;
+  top: 50%;
+  margin-left: 0.1em;
+  left: -50%;
+}
+.container-animation .wheel [class^="radius"]:before {
+  content: "";
+  background: #888;
+  width: 2em;
+  height: 0.02em;
+  position: absolute;
+  -webkit-transform: rotate(22deg);
+  -webkit-transform-origin: 100% 50%;
+  transform: rotate(22deg);
+  transform-origin: 100% 50%;
+}
+.container-animation .wheel .radius-1 {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.container-animation .wheel .radius-2 {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.container-animation .wheel .radius-4 {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.container-animation .wheel .radius-5 {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+.container-animation .wheel .radius-6 {
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+.container-animation .wheel .radius-7 {
+  -webkit-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+}
+.container-animation .wheel .radius-8 {
+  -webkit-transform: rotate(-225deg);
+  transform: rotate(-225deg);
+}
+
+@-webkit-keyframes rotating {
+  0% {
+    -webkit-transform: rotateZ(0);
+  }
+  100% {
+    -webkit-transform: rotateZ(-360deg);
+  }
+}
+@keyframes rotating {
+  0% {
+    transform: rotateZ(0);
+  }
+  100% {
+    transform: rotateZ(-360deg);
+  }
+}
+</style>
+
+</html>
+

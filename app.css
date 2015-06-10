@@ -1,0 +1,27 @@
+#editor-container {
+	width: 50%;
+	position: relative;
+	float: left;
+	min-height: 700px;
+	height: 100%;
+	border-right: 5px solid #222;
+	border-bottom: 5px solid #222;
+	box-sizing: border-box;
+}
+
+#sandbox-container {
+	box-sizing: border-box;
+	width: 50%;
+	float: right;
+	border-left: 5px solid #222;
+	border-bottom: 5px solid #222;
+	height: 700px;
+}
+
+#editor { 
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}	

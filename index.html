@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ACE in Action</title>
+</head>
+<body>
+<div id="editor-container">
+	<div id="editor">
+	</div>
+</div>
+<div id="sandbox-container">
+	<iframe src="frame-test.html" sandbox="allow-same-origin allow-scripts" height='700px' id="sandboxed-eval" style="width: 100%;"></iframe>
+</div>
+<button id="save-editor">Save Editor</button>
+<button id="execute-editor">Execute Editor</button>
+    
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="/js/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/app.js" type="text/javascript" charset="utf-8"></script>
+<link href="/app.css" rel="stylesheet">
+</body>
+</html>
+
