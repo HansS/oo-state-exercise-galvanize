@@ -51,14 +51,19 @@
 				$('.seat').css("background", bike.seatColor);
   		}
 
-  		if (bike.handlebarColor) {
+  		if (bike.handleBarColor) {
   			$('.handlebar').show()
-  			$('.handlebar').css("background", bike.handlebarColor);
+  			$('.handlebar').css("background", bike.handleBarColor);
   		}
+
+      if (bike.pedaling) {
+        $('.pedal').removeClass('remove-transformations');
+      } else {
+        $('.pedal').addClass('remove-transformations');
+      }
+
   		$(".bar-1,.bar-2,.bar-3").css("background", bike.frameColor);
-  		
-  		// $('.seat').css("background", bike.seatColor);
-  		
+  		$('.seat').css("background", bike.seatColor);
   	}
 
   });	
@@ -82,8 +87,8 @@
       </div>
     </div>
     <div class="middle">
-      <div class="pedal-1"></div>
-      <div class="pedal-2"></div>
+      <div class="pedal-1 pedal"></div>
+      <div class="pedal-2 pedal"></div>
       <div class="disc"></div>
     </div>
     <div class="back">
@@ -355,6 +360,14 @@
   100% {
     transform: rotateZ(-360deg);
   }
+}
+
+.remove-transformations,
+.remove-transformations:after {
+  -webkit-transform: none !important;
+  transform: none !important;
+  -webkit-animation: none !important;
+  animation: none !important;
 }
 </style>
 
