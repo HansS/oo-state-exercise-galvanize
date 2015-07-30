@@ -58,8 +58,10 @@
 
       if (bike.pedaling) {
         $('.pedal').removeClass('remove-transformations');
+        $('.wheel').removeClass('remove-transformations');
       } else {
         $('.pedal').addClass('remove-transformations');
+        $('.wheel').addClass('remove-transformations');
       }
 
   		$(".bar-1,.bar-2,.bar-3").css("background", bike.frameColor);
