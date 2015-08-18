@@ -23,3 +23,6 @@ bike.handleBarColor = 'white';
 // bike.stopPedaling();
 
 ```
+
+
+Bike CSS from here, http://codepen.io/maximerabot/pen/krifz
